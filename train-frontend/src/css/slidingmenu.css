@@ -1,0 +1,44 @@
+.menu{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.slidein{
+    background-color: #00004d;
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: .5s;
+}
+
+.slidein.active{
+    left: 0;
+    transition: 1s;
+}
+
+.menu-items > li{
+    color: white;
+    list-style: none;
+    display: flex;
+    justify-content: start;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    vertical-align: middle;
+}
+
+.menu-items > li:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.menu-items > li.close:hover{
+    background-color: #00004d;
+}
+
+.close{
+    margin: 1em;
+}

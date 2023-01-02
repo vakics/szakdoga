@@ -1,0 +1,52 @@
+.container{
+    background-color: whitesmoke;
+    min-height: 100vh;
+}
+
+.main{
+    margin: 1em;
+}
+
+table.trains{
+    border: thin solid black;
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 1em;
+    width: 80%;
+    text-align: center;
+}
+
+table.trains > thead > tr > th{ 
+    border-bottom: thin solid #000;
+}
+
+table.trains > tbody > tr > td {
+    padding-top: 0.5em;
+}
+
+table.trains > tbody > tr:first-child > td {
+    padding-bottom: 0.5em;
+}
+
+table.trains > tbody > tr:hover{
+    background-color: rgb(231, 224, 224);
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+button.like > img{
+    height: 2em;
+}
+
+table.trains > thead > tr > th > button{
+    font-weight: bold;
+    font-size: medium;
+}
+
+table.trains > thead > tr > th.filter:hover{
+    background-color: rgb(238, 238, 238);
+}
