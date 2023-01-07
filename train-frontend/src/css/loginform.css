@@ -36,3 +36,7 @@ div > button{
 div > button:hover{
     background-color: rgb(68, 198, 250);
 }
+
+div.error{
+    color: red;
+}

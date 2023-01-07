@@ -1,14 +1,30 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 import models
 from config import ApplicationConfig
 from flask_bcrypt import Bcrypt
+from flask_session import Session
+from flask_cors import CORS
 
 app=Flask(__name__)
 app.config.from_object(ApplicationConfig)
 bcrypt=Bcrypt(app)
+server_session=Session(app)
 models.db.init_app(app)
 with app.app_context():
     models.db.create_all()
+CORS(app,supports_credentials=True)
+
+
+@app.route("/@me")
+def get_current_user():
+    user_id=session.get("user_id")
+    if user_id is None:
+        return jsonify({"error":"Unauthorized"}),401
+    user=models.User.query.filter_by(user_id=user_id).first()
+    return jsonify({
+        "id":user.id,
+        "username":user.username
+    })
 
 @app.route("/register", methods=["POST"])
 def register_user():
@@ -36,6 +52,7 @@ def login():
         return jsonify({"error":"Unauthorized"}),401
     if not bcrypt.check_password_hash(user.password, password):
         return jsonify({"error":"Unauthorized"}),401
+    session["user_id"]=user.id
     return jsonify({
         "id":user.id,
         "username":user.username
