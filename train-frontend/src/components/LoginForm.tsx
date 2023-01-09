@@ -14,6 +14,9 @@ export const LoginForm=()=>{
     const {register,formState:{errors},handleSubmit}=useForm<Loginform>({mode:"onTouched"})
     const onSubmit: SubmitHandler<Loginform>=(data:{username:string,password:string})=>{
         axios.post("http://localhost:5000/login",{username:data.username,password:data.password}).then((response:any)=>{
+            sessionStorage.setItem("id",response.data.id)
+            sessionStorage.setItem("username",response.data.username)
+            sessionStorage.setItem("email",response.data.email)
             navigation('/home')
         }).catch((error:any)=>{
             alert("Hibás felhasználónév vagy jelszó!")

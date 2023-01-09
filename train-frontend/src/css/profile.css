@@ -1,0 +1,12 @@
+div.profile > h1{
+    text-align: left;
+    margin-left: 1em;
+}
+
+table.data{
+    margin-left: 5em;
+}
+
+table.data td{
+    padding-right: 1em;
+}

@@ -1,8 +1,10 @@
 import { Header } from "../components/Header"
 import "../css/mainsite.css"
 import { TrainList } from "../components/TrainList"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {MdArrowDownward} from "react-icons/md"
+import axios from "axios"
+import { useNavigate } from "react-router"
 
 export const MainSite=()=>{
     const data=[{id:1,sorozatszam:628,becenev:"Szergej",gyarto:"Luganszki",gyartKezd:1965,gyartVege:1974},
@@ -20,6 +22,14 @@ export const MainSite=()=>{
         })
         setSzuresek(uj)
     }
+    const navigate=useNavigate()
+    console.log(sessionStorage["id"])
+    useEffect(()=>{
+        if (sessionStorage["id"] === undefined) {
+            navigate('/')
+            alert("Nem vagy bejelentkezve!")
+        }
+    })
 
     return(
         <div className="container">

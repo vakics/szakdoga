@@ -15,7 +15,7 @@ with app.app_context():
 CORS(app,supports_credentials=True)
 
 
-@app.route("/@me")
+@app.route("/@me", methods=["GET"])
 def get_current_user():
     user_id=session.get("user_id")
     if user_id is None:
@@ -23,7 +23,8 @@ def get_current_user():
     user=models.User.query.filter_by(user_id=user_id).first()
     return jsonify({
         "id":user.id,
-        "username":user.username
+        "username":user.username,
+        "email":user.email
     })
 
 @app.route("/register", methods=["POST"])
@@ -55,8 +56,13 @@ def login():
     session["user_id"]=user.id
     return jsonify({
         "id":user.id,
-        "username":user.username
+        "username":user.username,
+        "email":user.email
     })
+
+@app.route('/logout',methods=["POST"])
+def logout():
+    session.pop("user_id",None)
 
 
 if __name__ == '__main__':

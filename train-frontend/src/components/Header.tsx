@@ -2,11 +2,11 @@ import { useState } from "react";
 import "../css/header.css"
 import { Menu, MenuItem } from "@material-ui/core";
 import { SlidingMenu } from "./SlidingMenu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header=()=>{
     const [anchorEl, setAnchorEl] = useState(null)
-  
+    const navigate=useNavigate()
     const handleClose = () => {
         setAnchorEl(null);
     }
@@ -14,6 +14,12 @@ export const Header=()=>{
     const handleClick = (event:any) => {
         setAnchorEl(event.currentTarget);
     }
+
+    const onLogout=()=>{
+        sessionStorage.clear()
+        navigate("/")
+    }
+
     return(
         <div className="header">
             <span className="menu">
@@ -36,7 +42,7 @@ export const Header=()=>{
                     </MenuItem>
                     <MenuItem onClick={handleClose}>Kedvencek</MenuItem>
                     <MenuItem onClick={handleClose}>
-                        <Link to='/' style={{color:"black",textDecoration:"none"}}>Kijelentkezés</Link>
+                        <div onClick={onLogout}>Kijelentkezés</div>
                     </MenuItem>
                 </Menu>
             </span>
