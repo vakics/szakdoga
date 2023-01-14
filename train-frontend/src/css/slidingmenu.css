@@ -28,11 +28,12 @@
     padding-bottom: 1em;
     padding-top: 1em;
     vertical-align: middle;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 .menu-items > li:hover{
-    background-color: whitesmoke;
-    color: black;
+    background-color: #242453;
 }
 
 .menu-items > li.close:hover{

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import {AiOutlineClose} from 'react-icons/ai'
 import '../css/slidingmenu.css'
+import { Link } from "react-router-dom"
 
 export const SlidingMenu=()=>{
     const [opened,setOpened]=useState(false)
@@ -15,8 +16,8 @@ export const SlidingMenu=()=>{
                 
                 <ul className="menu-items">
                     <li className="close"><AiOutlineClose size="2em" color="white"/></li>
-                    <li>MÁV villamos mozdonyok</li>
-                    <li>MÁV dízel mozdonyok</li>
+                    <li><Link to="/electric" style={{color:"white",textDecoration:"none"}}>MÁV villamos mozdonyok</Link></li>
+                    <li><Link to="/diesel" style={{color:"white",textDecoration:"none"}}>MÁV dízel mozdonyok</Link></li>
                     <li>MÁV motorvonatok</li>
                     <li>MÁV nosztalgia</li>
                 </ul>

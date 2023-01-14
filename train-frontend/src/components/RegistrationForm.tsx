@@ -20,7 +20,7 @@ export const RegistrationForm=()=>{
         })
     }
     return(
-        <div>
+        <div className='registrationform'>
             <h1>Regisztrálj!</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div id='title'>Regisztráció</div>

@@ -40,3 +40,7 @@ div > button:hover{
 div.error{
     color: red;
 }
+
+div.loginform > h1{
+    color: white;
+}

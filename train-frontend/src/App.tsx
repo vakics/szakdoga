@@ -5,6 +5,8 @@ import { Profile } from './pages/Profile';
 import { Login } from './pages/Login';
 import { Registration } from './pages/Registration';
 import React from 'react'
+import { DieselTrains } from './pages/DieselTrains';
+import { ElectricTrains } from './pages/ElectricTrains';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path='/signup' element={<Registration/>}/>
         <Route path='/home' element={<MainSite/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/diesel' element={<DieselTrains/>}/>
+        <Route path='/electric' element={<ElectricTrains/>}/>
       </Routes>
     </BrowserRouter>
   );
