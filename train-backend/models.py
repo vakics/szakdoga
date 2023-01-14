@@ -12,3 +12,17 @@ class User(db.Model):
     email=db.Column(db.String(345))
     username=db.Column(db.String(30), unique=True)
     password=db.Column(db.Text,nullable=False)
+
+class Train(db.Model):
+    __tablename__="trains"
+    id=db.Column(db.Integer(),primary_key=True,unique=True)
+    train_type=db.Column(db.String(15))
+    series_number=db.Column(db.Integer())
+    nickname=db.Column(db.String(20))
+    producer=db.Column(db.String())
+    produce_begins=db.Column(db.Integer())
+    produce_ends=db.Column(db.Integer())
+    info=db.Column(db.String())
+
+    def as_dict(self):
+       return {c.name: getattr(self, c.name) for c in self.__table__.columns}
