@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 import re
+import renaming_pics
 
-URL=["http://vonatosszeallitas.hu/jarmuvek_mav_mozdonyok.html","http://vonatosszeallitas.hu/jarmuvek_mav_motorvonatok.html"]
+URL=["http://vonatosszeallitas.hu/jarmuvek_mav_mozdonyok.html","http://vonatosszeallitas.hu/jarmuvek_mav_motorvonatok.html",
+"http://vonatosszeallitas.hu/jarmuvek_mav_nosztalgia.html"]
 
 def main():
     for origin in URL:
@@ -20,6 +22,8 @@ def main():
                 response = requests.get(url)
                 f.write(response.content)
     print("Download complete!")
+    renaming_pics.rename_pics()
+    print("Renamed for convention!")
 
 if __name__ == '__main__':
     main()
