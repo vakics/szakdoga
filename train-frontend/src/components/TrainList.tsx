@@ -24,7 +24,7 @@ export const TrainList=(data:{id: number,train_type: string,series_number: numbe
 
     return filtered.map((train)=>(
             <tr key={train.id}>
-                <td><img src={require(`../images/${train.series_number}.png`)} /></td>
+                <td><img src={require("../images/trains/"+train.series_number+".png")} /></td>
                 <td>{train.series_number}</td>
                 <td>{train.nickname}</td>
                 <td>{train.producer}</td>

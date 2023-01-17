@@ -4,6 +4,7 @@ import { Header } from "../components/Header"
 import { TrainList } from "../components/TrainList"
 import { MdArrowDownward } from "react-icons/md"
 import "../css/traintemplate.css"
+import { MultipleUnitList } from "../components/MultipleUnitList"
 
 export const TrainTemplate=(data:{id: number,train_type: string,series_number: number,nickname: string,producer: string,
 produce_begins: number,produce_ends: number, info: string}[],train_type:string)=>{
@@ -38,7 +39,7 @@ produce_begins: number,produce_ends: number, info: string}[],train_type:string)=
                 <table className="trains">
                     <thead>
                         <tr>
-                            <th>Kép</th>
+                            {train_type==="motor"?"":<th>Kép</th>}
                             <th className="filter"><button onClick={()=>refreshSzures(0)}>Típus{szuresek.at(0)?<MdArrowDownward/>:""}</button></th>
                             <th className="filter"><button onClick={()=>refreshSzures(1)}>Becenév{szuresek.at(1)?<MdArrowDownward/>:""}</button></th>
                             <th className="filter"><button onClick={()=>refreshSzures(2)}>Gyártó{szuresek.at(2)?<MdArrowDownward/>:""}</button></th>
@@ -48,7 +49,7 @@ produce_begins: number,produce_ends: number, info: string}[],train_type:string)=
                         </tr>
                     </thead>
                     <tbody>
-                        {TrainList(filtered,value,szuresek)}
+                        {train_type==="motor"?MultipleUnitList(filtered,value,szuresek):TrainList(filtered,value,szuresek)}
                     </tbody>
                 </table>
             </div>

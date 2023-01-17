@@ -7,6 +7,7 @@ import { Registration } from './pages/Registration';
 import React from 'react'
 import { DieselTrains } from './pages/DieselTrains';
 import { ElectricTrains } from './pages/ElectricTrains';
+import { MultipleUnitTrains } from './pages/MultipleUnitTrains';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/diesel' element={<DieselTrains/>}/>
         <Route path='/electric' element={<ElectricTrains/>}/>
+        <Route path='/munit' element={<MultipleUnitTrains/>}/>
       </Routes>
     </BrowserRouter>
   );
