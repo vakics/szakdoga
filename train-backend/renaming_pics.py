@@ -1,6 +1,6 @@
 import os
 
-path="images/"
+path="trains/"
 train_pics={"434":["BVmot_04_34_balra","Amxz_10_76","Bmxz_21_76","Bmxtz_80_76"],"414":["BDVmot_04_14_balra","Bmx_22_05"],
 "415":["BVpmot_04_15_kek"],"425":["BVbdpmot_04_25"],"416":["Bpmot_04_16"],"136":["Bzmot_01_36"],"127":["Bzmot_01_27_interpici","Bzmot_01_27_interpici_uj"],
 "117":["Bzmot_01_17"]}
