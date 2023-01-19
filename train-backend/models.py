@@ -23,6 +23,7 @@ class Train(db.Model):
     produce_begins=db.Column(db.Integer())
     produce_ends=db.Column(db.Integer())
     info=db.Column(db.String())
+    image_url=db.Column(db.String())
 
     def as_dict(self):
        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

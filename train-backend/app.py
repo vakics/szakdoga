@@ -73,7 +73,8 @@ def add_train():
     produce_begins=request.json["produce_begins"]
     produce_ends=request.json["produce_ends"]
     info=request.json["info"]
-    new_train=models.Train(train_type=train_type,series_number=series_number,nickname=nickname,producer=producer,produce_begins=produce_begins,produce_ends=produce_ends,info=info)
+    image_url=request.json["image_url"]
+    new_train=models.Train(train_type=train_type,series_number=series_number,nickname=nickname,producer=producer,produce_begins=produce_begins,produce_ends=produce_ends,info=info,image_url=image_url)
     models.db.session.add(new_train)
     models.db.session.commit()
     return jsonify({
@@ -84,7 +85,8 @@ def add_train():
         "producer":new_train.producer,
         "produce_begins":new_train.produce_begins,
         "produce_ends":new_train.produce_ends,
-        "info":new_train.info
+        "info":new_train.info,
+        "image_url":new_train.image_url
     })
 
 @app.route("/get_all_trains")
