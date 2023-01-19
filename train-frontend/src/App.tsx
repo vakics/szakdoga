@@ -8,6 +8,7 @@ import React from 'react'
 import { DieselTrains } from './pages/DieselTrains';
 import { ElectricTrains } from './pages/ElectricTrains';
 import { MultipleUnitTrains } from './pages/MultipleUnitTrains';
+import { NostalgiaTrains } from './pages/NostalgiaTrains';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/diesel' element={<DieselTrains/>}/>
         <Route path='/electric' element={<ElectricTrains/>}/>
         <Route path='/munit' element={<MultipleUnitTrains/>}/>
+        <Route path='/nostalgia' element={<NostalgiaTrains/>}/>
       </Routes>
     </BrowserRouter>
   );

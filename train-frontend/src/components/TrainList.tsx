@@ -1,11 +1,25 @@
+import { useState } from "react"
 import { LikeButton } from "./LikeButton"
+import { MdArrowDownward } from "react-icons/md"
 
 export const TrainList=(data:{id: number,train_type: string,series_number: number,nickname: string,producer: string,
-    produce_begins: number,produce_ends: number, info: string}[],search:string, szuresek:boolean[])=>{
+    produce_begins: number,produce_ends: number, info: string, image_url: string}[],search:string, train_type: string)=>{
         let filtered=data.filter((train)=>{
             return train.nickname.toLowerCase().includes(search) || train.producer.toLowerCase().includes(search) ||
             train.series_number.toString().includes(search)
+        }).filter((train)=>{return train.train_type.includes(train_type)})
+        const [szuresek,setSzuresek]=useState([false,false,false,false,false])
+        const refreshSzures=(index:number)=>{
+        const uj=szuresek.map((v,i)=>{
+            if (i===index){
+                return !v
+            }
+            else{
+                return false
+            }
         })
+        setSzuresek(uj)
+    }
         if (szuresek.at(0)){
             filtered=filtered.sort((a:{series_number:number},b:{series_number:number})=>(a.series_number > b.series_number ? 1 : -1))
         }
@@ -21,10 +35,53 @@ export const TrainList=(data:{id: number,train_type: string,series_number: numbe
         if (szuresek.at(4)){
             filtered=filtered.sort((a:{produce_ends:number},b:{produce_ends:number})=>(a.produce_ends > b.produce_ends ? 1 : -1))
         }
-
-    return filtered.map((train)=>(
+        const getPics=(series_number: number)=>{
+            try{
+                const src=require("../images/trains/"+series_number+".png")
+                if (src) return <img src={src} />
+            } catch(err){}
+            try{
+                const src=require("../images/trains/"+series_number+"_kozep_2.png")
+                if (src) return(<>
+                    <img src={require("../images/trains/"+series_number+"_balra.png")} />
+                    <img src={require("../images/trains/"+series_number+"_kozep_1.png")} />
+                    <img src={require("../images/trains/"+series_number+"_kozep_2.png")} />
+                    <img src={require("../images/trains/"+series_number+"_jobbra.png")} /></>)
+            } catch(err){}
+            try{
+                const src=require("../images/trains/"+series_number+"_kozep.png")
+                if(src) return(<>
+                    <img src={require("../images/trains/"+series_number+"_balra.png")} />
+                    <img src={require("../images/trains/"+series_number+"_kozep.png")} />
+                    <img src={require("../images/trains/"+series_number+"_jobbra.png")} /></>)
+            } catch(err){}
+            try{
+                const src=require("../images/trains/"+series_number+"_jobbra.png")
+                if(src) return(<>
+                    <img src={require("../images/trains/"+series_number+"_balra.png")} />
+                    <img src={require("../images/trains/"+series_number+"_jobbra.png")} /></>)
+            } catch(err){}
+        }
+    return(
+        <table className="trains">
+                    <thead>
+                        <tr>
+                            {train_type.includes("motor")?"":<th>Kép</th>}
+                            <th className="filter"><button onClick={()=>refreshSzures(0)}>Típus{szuresek.at(0)?<MdArrowDownward/>:""}</button></th>
+                            <th className="filter"><button onClick={()=>refreshSzures(1)}>Becenév{szuresek.at(1)?<MdArrowDownward/>:""}</button></th>
+                            <th className="filter"><button onClick={()=>refreshSzures(2)}>Gyártó{szuresek.at(2)?<MdArrowDownward/>:""}</button></th>
+                            <th className="filter"><button onClick={()=>refreshSzures(3)}>Gyártás kezdete{szuresek.at(3)?<MdArrowDownward/>:""}</button></th>
+                            <th className="filter"><button onClick={()=>refreshSzures(4)}>Gyártás vége{szuresek.at(4)?<MdArrowDownward/>:""}</button></th>
+                            <th>Like</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {train_type.includes("motor")?filtered.map((train)=>(
+            <>
+            <tr key={train.id + "kep"}>
+                <td colSpan={6}>{getPics(train.series_number)}</td>
+            </tr>
             <tr key={train.id}>
-                <td><img src={require("../images/trains/"+train.series_number+".png")} /></td>
                 <td>{train.series_number}</td>
                 <td>{train.nickname}</td>
                 <td>{train.producer}</td>
@@ -34,5 +91,21 @@ export const TrainList=(data:{id: number,train_type: string,series_number: numbe
                     <LikeButton/>
                 </td>
             </tr>
-    ))
+            </>
+        )):filtered.map((train)=>(
+                        <tr key={train.id}>
+                            <td><img src={require("../images/trains/"+train.series_number+".png")} /></td>
+                            <td>{train.series_number}</td>
+                            <td>{train.nickname}</td>
+                            <td>{train.producer}</td>
+                            <td>{train.produce_begins}</td>
+                            <td>{train.produce_ends}</td>
+                            <td>
+                                <LikeButton/>
+                            </td>
+                        </tr>
+    ))}
+                    </tbody>
+                </table>
+    )
 }

@@ -19,7 +19,7 @@ export const SlidingMenu=()=>{
                     <li><Link to="/electric" style={{color:"white",textDecoration:"none"}}>MÁV villamos mozdonyok</Link></li>
                     <li><Link to="/diesel" style={{color:"white",textDecoration:"none"}}>MÁV dízel mozdonyok</Link></li>
                     <li><Link to='/munit' style={{color:"white",textDecoration:"none"}}>MÁV motorvonatok</Link></li>
-                    <li>MÁV nosztalgia</li>
+                    <li><Link to="/nostalgia" style={{color:"white",textDecoration:"none"}}>MÁV nosztalgia</Link></li>
                 </ul>
             </div>
         </div>
