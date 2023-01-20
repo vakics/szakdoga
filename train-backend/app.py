@@ -93,6 +93,15 @@ def add_train():
 def get_all_trains():
     return json.dumps([train.as_dict() for train in models.Train.query.all()])
 
+
+@app.route("/get_train_by_id")
+def get_train_by_id():
+    args=request.args
+    train=models.Train.query.filter_by(id=args.get("id")).first()
+    if train is None:
+        return jsonify({"error":"Not found"}),404
+    return json.dumps(train.as_dict())
+
 if __name__ == '__main__':
     app.run(debug=True)
     
