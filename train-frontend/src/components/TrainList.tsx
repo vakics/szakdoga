@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { LikeButton } from "./LikeButton"
 import { MdArrowDownward } from "react-icons/md"
+import { Link } from "react-router-dom"
 
 export const TrainList=(data:{id: number,train_type: string,series_number: number,nickname: string,producer: string,
     produce_begins: number,produce_ends: number, info: string, image_url: string}[],search:string, train_type: string)=>{
@@ -79,7 +80,7 @@ export const TrainList=(data:{id: number,train_type: string,series_number: numbe
                         {train_type.includes("motor")?filtered.map((train)=>(
             <>
             <tr key={train.id + "kep"}>
-                <td colSpan={6}>{getPics(train.series_number)}</td>
+                <td colSpan={6}><Link to={"/traininfo#"+train.id}>{getPics(train.series_number)}</Link></td>
             </tr>
             <tr key={train.id}>
                 <td>{train.series_number}</td>
@@ -94,7 +95,7 @@ export const TrainList=(data:{id: number,train_type: string,series_number: numbe
             </>
         )):filtered.map((train)=>(
                         <tr key={train.id}>
-                            <td><img src={require("../images/trains/"+train.series_number+".png")} /></td>
+                            <td><Link to={"/traininfo#"+train.id}><img src={require("../images/trains/"+train.series_number+".png")} /></Link></td>
                             <td>{train.series_number}</td>
                             <td>{train.nickname}</td>
                             <td>{train.producer}</td>

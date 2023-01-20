@@ -9,6 +9,7 @@ import { DieselTrains } from './pages/DieselTrains';
 import { ElectricTrains } from './pages/ElectricTrains';
 import { MultipleUnitTrains } from './pages/MultipleUnitTrains';
 import { NostalgiaTrains } from './pages/NostalgiaTrains';
+import { TrainById } from './pages/TrainById';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/electric' element={<ElectricTrains/>}/>
         <Route path='/munit' element={<MultipleUnitTrains/>}/>
         <Route path='/nostalgia' element={<NostalgiaTrains/>}/>
+        <Route path='/traininfo' element={<TrainById/>}/>
       </Routes>
     </BrowserRouter>
   );
