@@ -2,10 +2,9 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { TrainInterface } from "../components/TrainInterface"
 import { Header } from "../components/Header"
-import { useNavigate } from "react-router"
 import { TrainList } from "../components/TrainList"
 
-export const NostalgiaTrains=()=>{
+export const Favorites=()=>{
     const [DATA,setDATA]=useState<TrainInterface[]>([])
     const getDATA=async()=>{
         const { data } =await axios.get<TrainInterface[]>("http://localhost:5000/get_all_trains")
@@ -20,28 +19,23 @@ export const NostalgiaTrains=()=>{
         setFavorites(data)
     }
     useEffect(()=>{getFavorites()},[])
-    const [value, setValue] = useState<string>('')
-    const navigate=useNavigate()
-    useEffect(()=>{
-        if (sessionStorage["id"] === undefined) {
-            navigate('/')
-            alert("Nem vagy bejelentkezve!")
-        }
+    const [ids,setIds]=useState<number[]>([])
+    favorites.forEach((favorite)=>ids.push(favorite.train_id))
+    const filtered=DATA.filter((train)=>{
+        if (ids.includes(train.id)) {return train}
     })
-    const filtered=DATA.filter((train)=>train.train_type.includes("nosztalgia"))
 
     return(
         <div className="container">
             <Header/>
-            <div className="main">
-                <div className="search">
-                    <input type="text" placeholder="Keresés" id="searchbar" value={value} onChange={(e)=>setValue(e.target.value)} />
-                </div>
-                <h2>Gőzmozdonyok</h2>
-                {TrainList(filtered,favorites,value,"gőzös")}
-                <h2>Dízelmozdonyok</h2>
-                {TrainList(filtered,favorites,value,"dízel")}
-            </div>
+            <h2>Villamos mozdonyok</h2>
+            {TrainList(filtered,favorites,"","villamos")}
+            <h2>Motorvonatok</h2>
+            {TrainList(filtered,favorites,"","motor")}
+            <h2>Dízelmozdonyok</h2>
+            {TrainList(filtered,favorites,"","dízel")}
+            <h2>Gőzmozdonyok</h2>
+            {TrainList(filtered,favorites,"","gőzös")}
         </div>
     )
 }

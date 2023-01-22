@@ -10,6 +10,7 @@ import { ElectricTrains } from './pages/ElectricTrains';
 import { MultipleUnitTrains } from './pages/MultipleUnitTrains';
 import { NostalgiaTrains } from './pages/NostalgiaTrains';
 import { TrainById } from './pages/TrainById';
+import { Favorites } from './pages/Favorites';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/munit' element={<MultipleUnitTrains/>}/>
         <Route path='/nostalgia' element={<NostalgiaTrains/>}/>
         <Route path='/traininfo' element={<TrainById/>}/>
+        <Route path='/favorites' element={<Favorites/>}/>
       </Routes>
     </BrowserRouter>
   );

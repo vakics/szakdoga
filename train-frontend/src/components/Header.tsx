@@ -40,7 +40,9 @@ export const Header=()=>{
                     <MenuItem onClick={handleClose}>
                         <Link to="/profile"  style={{color:"black",textDecoration:"none"}}>Profil</Link>
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>Kedvencek</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                        <Link to="/favorites" style={{color:"black",textDecoration:"none"}}>Kedvencek</Link>
+                    </MenuItem>
                     <MenuItem onClick={handleClose}>
                         <div onClick={onLogout}>Kijelentkezés</div>
                     </MenuItem>
