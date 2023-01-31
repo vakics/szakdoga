@@ -36,3 +36,14 @@ class Favorites(db.Model):
 
     def as_dict(self):
        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+class Comments(db.Model):
+    __tablename__="comments"
+    id=db.Column(db.Integer(),primary_key=True,unique=True)
+    username=db.Column(db.String(30))
+    train_id=db.Column(db.Integer())
+    comment=db.Column(db.String(300))
+    created=db.Column(db.String())
+
+    def as_dict(self):
+       return {c.name: getattr(self, c.name) for c in self.__table__.columns}

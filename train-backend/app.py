@@ -138,6 +138,34 @@ def delete_favorite(id):
         models.db.session.commit()
     return jsonify({"message":"Successfully deleted!"}),200
 
+@app.route("/add_comment",methods=['POST'])
+def add_comment():
+    username=request.json["username"]
+    train_id=request.json["train_id"]
+    comment=request.json["comment"]
+    created=request.json["created"]
+    new_comment=models.Comments(username=username,train_id=train_id,comment=comment,created=created)
+    models.db.session.add(new_comment)
+    models.db.session.commit()
+    return json.dumps(new_comment.as_dict())
+
+@app.route("/get_comments_by_train_id/<int:train_id>")
+def get_comments_by_train_id(train_id):
+    comments=models.Comments.query.filter_by(train_id=train_id)
+    if comments is None:
+        return jsonify({"error":"Not found"}),404
+    return json.dumps([comment.as_dict() for comment in comments])
+
+@app.route("/delete_comment_by_id/<int:id>",methods=['GET','DELETE'])
+def delete_comment_by_id(id):
+    comment=models.Comments.query.get(id)
+    if comment is None:
+        return jsonify({"error":"Not found"}),404
+    if request.method=="DELETE":
+        models.db.session.delete(comment)
+        models.db.session.commit()
+    return jsonify({"message":"Successfully deleted!"}),200
+
 if __name__ == '__main__':
     app.run(debug=True)
     
