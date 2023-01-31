@@ -18,3 +18,13 @@ div.info{
     border-top: thin solid rgb(197, 187, 187);
     padding-top: 0.5em;
 }
+
+div.comments form{
+    float: left;
+    background-color: whitesmoke;
+}
+
+div.gotFromServerComments{
+    clear: both;
+    padding-top: 1em;
+}

@@ -5,6 +5,9 @@ import { TrainInterface } from "../components/TrainInterface"
 import axios from "axios"
 import "../css/trainbyid.css"
 import LikeButton from "../components/LikeButton"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { CommentForm } from "../components/CommentForm"
+import { Comments } from "../components/Comments"
 
 export const TrainById=()=>{
     const navigate=useNavigate()
@@ -23,19 +26,13 @@ export const TrainById=()=>{
         setFavorites(data)
     }
     useEffect(()=>{getFavorites()},[])
-    const isTrainLiked=(train_id: number | undefined)=>{
-        let liked=false
-        favorites.filter((favorite)=>{
-            if (favorite.train_id===train_id) {liked=true}
-        })
-        return liked
-    }
     useEffect(()=>{
         if (sessionStorage["id"] === undefined) {
             navigate('/')
             alert("Nem vagy bejelentkezve!")
         }
     })
+    
 
     return(
         <div className="container">
@@ -45,11 +42,18 @@ export const TrainById=()=>{
                     <tbody>
                         <tr>
                             <td><img className="trainbyid" src={DATA?.image_url} /></td>
-                            <td><LikeButton train_id={DATA?.id} like={isTrainLiked(DATA?.id)} favorite={favorites}/></td>
+                            <td><LikeButton train_id={DATA?.id} favorite={favorites}/></td>
                         </tr>
                     </tbody>
                 </table>
                 <div className="info">{DATA?.info}</div>
+                <div className="comments">
+                    <h3>Hozzászólás</h3>
+                    {CommentForm(DATA?.id)}
+                </div>
+                <div className="gotFromServerComments">
+                    <Comments/>
+                </div>
             </div>
         </div>
     )

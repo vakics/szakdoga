@@ -1,0 +1,21 @@
+table.gotComments{
+    border: thin solid rgb(252, 196, 123);
+}
+
+table.gotComments tr.data td{
+    min-width: 80vw;
+    padding: 0.2em;
+    background-color: antiquewhite;
+}
+
+table.gotComments tr.data td span.date{
+    float: right;
+    color: rgb(111, 139, 148);
+}
+
+table.gotComments tr.comment td{
+    width: 80vw;
+    padding: 0.2em;
+    background-color: rgb(248, 244, 238);
+    border-bottom: thin solid rgb(252, 196, 123);
+}
