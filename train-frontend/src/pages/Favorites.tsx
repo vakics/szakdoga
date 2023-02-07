@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { TrainInterface } from "../components/TrainInterface"
 import { Header } from "../components/Header"
 import { TrainList } from "../components/TrainList"
+import "../css/favorites.css"
 
 export const Favorites=()=>{
     const [DATA,setDATA]=useState<TrainInterface[]>([])
@@ -25,17 +26,35 @@ export const Favorites=()=>{
         if (ids.includes(train.id)) {return train}
     })
 
+    const isArrayEmpty=(data:TrainInterface[],train_type:string):boolean=>{
+        const filter=data.filter((train)=>{
+            if (train.train_type.includes(train_type)) return train
+        })
+        if (filter.length===0) {
+            return true
+        }
+        else return false
+    }
+
     return(
         <div className="container">
             <Header/>
-            <h2>Villamos mozdonyok</h2>
-            {TrainList(filtered,favorites,"","villamos")}
-            <h2>Motorvonatok</h2>
-            {TrainList(filtered,favorites,"","motor")}
-            <h2>Dízelmozdonyok</h2>
-            {TrainList(filtered,favorites,"","dízel")}
-            <h2>Gőzmozdonyok</h2>
-            {TrainList(filtered,favorites,"","gőzös")}
+            <div className={isArrayEmpty(filtered,"villamos")?"hidden":""}>
+                <h2>Villamos mozdonyok</h2>
+                {TrainList(filtered,favorites,"","villamos")}
+            </div>
+            <div className={isArrayEmpty(filtered,"motor")?"hidden":""}>
+                <h2>Motorvonatok</h2>
+                {TrainList(filtered,favorites,"","motor")}
+            </div>
+            <div className={isArrayEmpty(filtered,"dízel")?"hidden":""}>
+                <h2>Dízelmozdonyok</h2>
+                {TrainList(filtered,favorites,"","dízel")}
+            </div>
+            <div className={isArrayEmpty(filtered,"gőzös")?"hidden":""}>
+                <h2>Gőzmozdonyok</h2>
+                {TrainList(filtered,favorites,"","gőzös")}
+            </div>
         </div>
     )
 }
