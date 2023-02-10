@@ -1,0 +1,35 @@
+canvas.playArea{
+    margin-top: 1em;
+    border: thin solid black;
+    margin-left: 1em;
+}
+
+#station,#locomotive,#carrige{
+    display: none;
+}
+
+.playButton {
+	position: fixed;
+	top: 50%;
+    right: 10%;
+}
+
+.scoreBox {
+	float: right;
+    position: fixed;
+    top: 15%;
+    right: 5%;
+}
+
+.gameOver {
+	position: fixed;
+	top: 50%;
+	left: 40%;
+	transform: translate(-50%, -50%);
+    font-size: xx-large;
+    border: thin black solid;
+    padding: 1em;
+    background-color: rgb(219, 58, 58);
+    color: white;
+    text-transform: uppercase;
+}

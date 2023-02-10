@@ -11,6 +11,7 @@ import { MultipleUnitTrains } from './pages/MultipleUnitTrains';
 import { NostalgiaTrains } from './pages/NostalgiaTrains';
 import { TrainById } from './pages/TrainById';
 import { Favorites } from './pages/Favorites';
+import { Game } from './pages/Game';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/nostalgia' element={<NostalgiaTrains/>}/>
         <Route path='/traininfo' element={<TrainById/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
+        <Route path='/surprise' element={<Game/>}/>
       </Routes>
     </BrowserRouter>
   );
