@@ -1,0 +1,10 @@
+flask
+flask_bcrypt
+flask_session
+flask_cors
+dotenv
+redis
+bs4
+requests
+re
+shutil
