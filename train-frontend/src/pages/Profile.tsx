@@ -1,3 +1,4 @@
+import { AuthMessage } from "../components/AuthMessage"
 import { Header } from "../components/Header"
 import '../css/profile.css'
 
@@ -5,6 +6,7 @@ export const Profile=()=>{
     return(
         <div className="profile">
             <Header/>
+            <AuthMessage/>
             <h1>Profil adatok</h1>
             <table className="data">
                 <tbody>

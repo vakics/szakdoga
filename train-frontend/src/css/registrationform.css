@@ -1,3 +1,11 @@
 div.registrationform > h1{
     color: white;
+    margin-bottom: 1em;
+}
+
+form.regform{
+    background-color: white;
+    width: fit-content;
+    margin: auto;
+    border-radius: 0.3em;
 }

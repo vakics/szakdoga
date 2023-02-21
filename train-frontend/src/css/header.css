@@ -1,33 +1,12 @@
 .header{
-    background-color: royalblue;
-    padding: 0.5em;
-    display: grid;
-    grid-auto-flow: column;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     position: sticky;
-    width: 100vw;
-}
-
-.logo{
-    color: white;
-    margin: auto;
-    font-size: larger;
-    letter-spacing: 0.2em;
+    width: 100%;
+    z-index: 9;
 }
 
 .menu{
     height: 2.5em;
-}
-
-div.header > span > button{
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
-
-div.header > span > button > img{
-    height: 2.5em;
-}
-
-div.header > span > button.user{
-    float: right;
 }

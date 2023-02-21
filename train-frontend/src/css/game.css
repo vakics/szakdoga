@@ -21,15 +21,7 @@ canvas.playArea{
     right: 5%;
 }
 
-.gameOver {
-	position: fixed;
-	top: 50%;
-	left: 40%;
-	transform: translate(-50%, -50%);
-    font-size: xx-large;
-    border: thin black solid;
-    padding: 1em;
-    background-color: rgb(219, 58, 58);
+.gameover .modal-content{
+    background-color: red;
     color: white;
-    text-transform: uppercase;
 }

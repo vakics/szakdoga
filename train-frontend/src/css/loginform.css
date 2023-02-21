@@ -5,7 +5,7 @@ h1{
     padding-top: 1em;
 }
 
-form{
+form.login{
     background-color: white;
     width: fit-content;
     margin: auto;
@@ -43,4 +43,5 @@ div.error{
 
 div.loginform > h1{
     color: white;
+    margin-bottom: 2em;
 }

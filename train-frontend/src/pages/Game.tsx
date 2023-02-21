@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { Header } from "../components/Header"
 import '../css/game.css'
 import useInterval from "../components/game/UseInterval"
+import { Button, Modal } from "react-bootstrap"
 
 const canvasX = 1000
 const canvasY = 500
@@ -149,14 +150,28 @@ export const Game=()=>{
 				<img src={require("../images/trains/Bpost_82_29.png")} id="carrige" />
 				<img src={require("../images/trains/M32.png")} id="locomotive" />
                 <img id="station" src={require("../images/station.png")} width="30" />
+				{gameOver && 
+				<Modal show={gameOver} className="gameover" aria-labelledby="contained-modal-title-vcenter" centered>
+					<Modal.Header closeButton onClick={()=>setGameOver(false)}>
+					  <Modal.Title>Game over</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<div>Vesztettél!</div>
+						<div>Pontjaid száma {score}</div>
+					</Modal.Body>
+					<Modal.Footer>
+					  <Button variant="light" onClick={()=>setGameOver(false)}>
+						Bezárás
+					  </Button>
+					</Modal.Footer>
+				</Modal>}
                 <canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
-                {gameOver && <div className="gameOver">Game Over</div>}
 				<button onClick={play} className="playButton">
-					Play
+					Játék
 				</button>
             </div>
 			<div className="scoreBox">
-				<h2>Score: {score}</h2>
+				<h2>Pontok: {score}</h2>
 				<h2>High Score: {localStorage.getItem("highScore")}</h2>
 			</div>	
         </div>

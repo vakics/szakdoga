@@ -1,0 +1,9 @@
+div.container-fluid{
+    margin: 0 !important;
+    padding: 0;
+}
+
+div.main{
+    margin-left: 1em;
+    overflow-x: hidden !important;
+}

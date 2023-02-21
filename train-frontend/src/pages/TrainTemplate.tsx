@@ -4,6 +4,7 @@ import { Header } from "../components/Header"
 import { TrainList } from "../components/TrainList"
 import "../css/traintemplate.css"
 import axios from "axios"
+import { AuthMessage } from "../components/AuthMessage"
 
 export const TrainTemplate=(data:{id: number,train_type: string,series_number: number,nickname: string,producer: string,
 produce_begins: number,produce_ends: number, info: string,image_url: string}[],train_type:string)=>{
@@ -15,16 +16,11 @@ produce_begins: number,produce_ends: number, info: string,image_url: string}[],t
         setFavorites(data)
     }
     useEffect(()=>{getFavorites()},[])
-    const navigate=useNavigate()
-    useEffect(()=>{
-        if (sessionStorage["id"] === undefined) {
-            navigate('/')
-            alert("Nem vagy bejelentkezve!")
-        }
-    })
+    
     return(
-        <div className="container">
+        <div className="container-fluid">
             <Header/>
+            <AuthMessage/>
             <div className="main">
                 <div className="search">
                     <input type="text" placeholder="Keresés" id="searchbar" value={value} onChange={(e)=>setValue(e.target.value)} />

@@ -12,6 +12,7 @@ import { NostalgiaTrains } from './pages/NostalgiaTrains';
 import { TrainById } from './pages/TrainById';
 import { Favorites } from './pages/Favorites';
 import { Game } from './pages/Game';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (

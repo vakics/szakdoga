@@ -21,32 +21,9 @@ export const Header=()=>{
     }
 
     return(
-        <div className="header">
+        <div className="header bg-dark">
             <span className="menu">
                 <SlidingMenu/>
-            </span>
-            <span className="logo">
-                Vonatok
-            </span>
-            <span className="user">
-                <button onClick={handleClick} className="user">
-                    <img src={require('../images/user.png')} alt="User" />
-                </button>
-                <Menu
-                keepMounted
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                open={Boolean(anchorEl)}>
-                    <MenuItem onClick={handleClose}>
-                        <Link to="/profile"  style={{color:"black",textDecoration:"none"}}>Profil</Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <Link to="/favorites" style={{color:"black",textDecoration:"none"}}>Kedvencek</Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                        <div onClick={onLogout}>Kijelentkezés</div>
-                    </MenuItem>
-                </Menu>
             </span>
         </div>
     )

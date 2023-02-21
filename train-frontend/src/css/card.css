@@ -1,0 +1,37 @@
+button.like{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin: 0;
+}
+
+button.like:hover{
+    background-color: transparent;
+}
+
+div.train-card{
+    background-color: lightblue;
+    border-radius: 0.5em;
+    width: 20em;
+    text-align: center;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+div.train-card img.train-img{
+    width: 12em;
+    height: auto;
+}
+
+ul.list{
+    padding: 0;
+    margin: 0;
+}
+
+ul.list > li{
+    list-style-type: none;
+}
+
+div.train-card img{
+    padding-top: 0.5em;
+}

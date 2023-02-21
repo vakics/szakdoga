@@ -19,7 +19,9 @@ export const CommentForm=(train_id:number|undefined)=>{
     return(
         <>
             <form>
-                <textarea value={value} onChange={(e)=>{setValue(e.target.value)}} cols={40} rows={5}></textarea>
+                <div className="form-group p-0">
+                    <textarea className="form-control" value={value} onChange={(e)=>{setValue(e.target.value)}} rows={5}></textarea>
+                </div>
                 <br />
                 <input type="submit" onClick={onSubmit} />
             </form>

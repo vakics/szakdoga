@@ -25,7 +25,7 @@ export const LoginForm=()=>{
     return(
         <div className='loginform'>
             <h1>Jelentkezz be</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className='login' onSubmit={handleSubmit(onSubmit)}>
                 <div id='title'>Bejelentkezés</div>
                 <div><input {...register("username",{required:"Kötelező mező!"})} type="text" placeholder='Felhasználónév' /></div>
                 <div className="error">{errors.username?.message}</div>

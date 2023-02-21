@@ -22,7 +22,7 @@ export const RegistrationForm=()=>{
     return(
         <div className='registrationform'>
             <h1>Regisztrálj!</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className='regform' onSubmit={handleSubmit(onSubmit)}>
                 <div id='title'>Regisztráció</div>
                 <div><input {...register("email",{required:true,pattern:/[a-z0-9]+@[a-z]+.[a-z]{2,3}/})} type="text" placeholder='Email-cím' /></div>
                 <div className="error">{errors.email && "Ez nem egy érvényes email-cím!"}</div>

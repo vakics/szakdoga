@@ -5,12 +5,11 @@ import { TrainInterface } from "../components/TrainInterface"
 import axios from "axios"
 import "../css/trainbyid.css"
 import LikeButton from "../components/LikeButton"
-import { SubmitHandler, useForm } from "react-hook-form"
 import { CommentForm } from "../components/CommentForm"
 import { Comments } from "../components/Comments"
+import { AuthMessage } from "../components/AuthMessage"
 
 export const TrainById=()=>{
-    const navigate=useNavigate()
     const location=useLocation()
     const [DATA,setDATA]=useState<TrainInterface>()
     const getDATA=async()=>{
@@ -25,27 +24,19 @@ export const TrainById=()=>{
         const {data}=await axios.get("http://localhost:5000/get_favorites_by_user_id/"+sessionStorage["id"])
         setFavorites(data)
     }
-    useEffect(()=>{getFavorites()},[])
-    useEffect(()=>{
-        if (sessionStorage["id"] === undefined) {
-            navigate('/')
-            alert("Nem vagy bejelentkezve!")
-        }
-    })
-    
+    useEffect(()=>{getFavorites()},[])    
 
     return(
-        <div className="container">
+        <div className="container-fluid overflow-auto">
             <Header/>
+            <AuthMessage/>
             <div className="main">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><img className="trainbyid" src={DATA?.image_url} /></td>
-                            <td><LikeButton train_id={DATA?.id} favorite={favorites}/></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="headline">
+                    <div className="train-img"><img className="trainbyid" src={DATA?.image_url} /></div>
+                    <div className="like">
+                        <LikeButton train_id={DATA?.id} favorite={favorites}/>
+                    </div>
+                </div>
                 <div className="info">{DATA?.info}</div>
                 <div className="comments">
                     <h3>Hozzászólás</h3>

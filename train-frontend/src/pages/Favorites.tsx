@@ -4,6 +4,7 @@ import { TrainInterface } from "../components/TrainInterface"
 import { Header } from "../components/Header"
 import { TrainList } from "../components/TrainList"
 import "../css/favorites.css"
+import { AuthMessage } from "../components/AuthMessage"
 
 export const Favorites=()=>{
     const [DATA,setDATA]=useState<TrainInterface[]>([])
@@ -37,23 +38,26 @@ export const Favorites=()=>{
     }
 
     return(
-        <div className="container">
+        <div className="container-fluid">
             <Header/>
-            <div className={isArrayEmpty(filtered,"villamos")?"hidden":""}>
-                <h2>Villamos mozdonyok</h2>
-                {TrainList(filtered,favorites,"","villamos")}
-            </div>
-            <div className={isArrayEmpty(filtered,"motor")?"hidden":""}>
-                <h2>Motorvonatok</h2>
-                {TrainList(filtered,favorites,"","motor")}
-            </div>
-            <div className={isArrayEmpty(filtered,"dízel")?"hidden":""}>
-                <h2>Dízelmozdonyok</h2>
-                {TrainList(filtered,favorites,"","dízel")}
-            </div>
-            <div className={isArrayEmpty(filtered,"gőzös")?"hidden":""}>
-                <h2>Gőzmozdonyok</h2>
-                {TrainList(filtered,favorites,"","gőzös")}
+            <AuthMessage/>
+            <div className="main">
+                <div className={isArrayEmpty(filtered,"villamos")?"hidden":""}>
+                    <h2>Villamos mozdonyok</h2>
+                    {TrainList(filtered,favorites,"","villamos")}
+                </div>
+                <div className={isArrayEmpty(filtered,"motor")?"hidden":""}>
+                    <h2>Motorvonatok</h2>
+                    {TrainList(filtered,favorites,"","motor")}
+                </div>
+                <div className={isArrayEmpty(filtered,"dízel")?"hidden":""}>
+                    <h2>Dízelmozdonyok</h2>
+                    {TrainList(filtered,favorites,"","dízel")}
+                </div>
+                <div className={isArrayEmpty(filtered,"gőzös")?"hidden":""}>
+                    <h2>Gőzmozdonyok</h2>
+                    {TrainList(filtered,favorites,"","gőzös")}
+                </div>
             </div>
         </div>
     )

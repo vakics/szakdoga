@@ -2,6 +2,7 @@ import { useState } from "react"
 import { MdArrowDownward } from "react-icons/md"
 import { Link } from "react-router-dom"
 import LikeButton from "./LikeButton"
+import { Card } from "./Card"
 
 export const TrainList=(data:{id: number,train_type: string,series_number: number,nickname: string,producer: string,
 produce_begins: number,produce_ends: number, info: string, image_url: string}[],favorites:{id:number,
@@ -66,7 +67,7 @@ user_id:string,train_id:number}[],search:string, train_type: string)=>{
     }
         
     return(
-        <table className="trains">
+        /*<table className="trains">
             <thead>
                 <tr>
                     {train_type.includes("motor")?"":<th>Kép</th>}
@@ -109,6 +110,11 @@ user_id:string,train_id:number}[],search:string, train_type: string)=>{
                     </tr>
                 ))}
             </tbody>
-        </table>
+        </table>*/
+        <div className="trains d-flex flex-wrap mt-2">
+            {filtered.map((train)=>(
+            <Card train={train} favorites={favorites}/>
+        ))}
+        </div>
     )
 }

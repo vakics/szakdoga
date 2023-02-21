@@ -1,10 +1,9 @@
-.container{
+.container-fluid{
     background-color: whitesmoke;
     min-height: 100vh;
-}
-
-.main{
-    margin: 1em;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
 table.trains{
