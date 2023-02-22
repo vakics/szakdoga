@@ -4,6 +4,7 @@ from config import ApplicationConfig
 from flask_bcrypt import Bcrypt
 from flask_session import Session
 from flask_cors import CORS
+from train_uploading import upload
 
 app=Flask(__name__)
 app.config.from_object(ApplicationConfig)
@@ -12,6 +13,7 @@ server_session=Session(app)
 models.db.init_app(app)
 with app.app_context():
     models.db.create_all()
+    upload(app)
 CORS(app,supports_credentials=True)
 
 
