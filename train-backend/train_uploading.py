@@ -18,8 +18,5 @@ def upload(app):
         if len(Train.query.all()) > len(data):
             with open("train.json","w") as json_file:
                 json_file.write(json.dumps([train.as_dict() for train in Train.query.all()]))
-
-if __name__ == '__main__':
-    upload()
     
     

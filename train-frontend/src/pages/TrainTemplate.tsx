@@ -5,9 +5,9 @@ import { TrainList } from "../components/TrainList"
 import "../css/traintemplate.css"
 import axios from "axios"
 import { AuthMessage } from "../components/AuthMessage"
+import { TrainInterface } from "../components/TrainInterface"
 
-export const TrainTemplate=(data:{id: number,train_type: string,series_number: number,nickname: string,producer: string,
-produce_begins: number,produce_ends: number, info: string,image_url: string}[],train_type:string)=>{
+export const TrainTemplate=(data:TrainInterface[],train_type:string)=>{
     const filtered=data.filter((train)=>train.train_type===train_type)
     const [value, setValue] = useState<string>('')
     const [favorites,setFavorites]=useState<{id:number,user_id:string,train_id:number}[]>([])

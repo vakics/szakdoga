@@ -3,10 +3,9 @@ import { MdArrowDownward } from "react-icons/md"
 import { Link } from "react-router-dom"
 import LikeButton from "./LikeButton"
 import { Card } from "./Card"
+import { TrainInterface } from "./TrainInterface"
 
-export const TrainList=(data:{id: number,train_type: string,series_number: number,nickname: string,producer: string,
-produce_begins: number,produce_ends: number, info: string, image_url: string}[],favorites:{id:number,
-user_id:string,train_id:number}[],search:string, train_type: string)=>{
+export const TrainList=(data:TrainInterface[],favorites:{id:number,user_id:string,train_id:number}[],search:string, train_type: string)=>{
     let filtered=data.filter((train)=>{
         return train.nickname.toLowerCase().includes(search) || train.producer.toLowerCase().includes(search) ||
         train.series_number.toString().includes(search)
@@ -24,7 +23,7 @@ user_id:string,train_id:number}[],search:string, train_type: string)=>{
     }
     
     if (szuresek.at(0)){
-        filtered=filtered.sort((a:{series_number:number},b:{series_number:number})=>(a.series_number > b.series_number ? 1 : -1))
+        filtered=filtered.sort((a:{series_number:string},b:{series_number:string})=>(a.series_number > b.series_number ? 1 : -1))
     }
     if (szuresek.at(1)){
         filtered=filtered.sort((a:{nickname:string},b:{nickname:string})=>(a.nickname > b.nickname ? 1 : -1))

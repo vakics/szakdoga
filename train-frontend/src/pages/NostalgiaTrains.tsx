@@ -37,6 +37,8 @@ export const NostalgiaTrains=()=>{
                 {TrainList(filtered,favorites,value,"gőzös")}
                 <h2>Dízelmozdonyok</h2>
                 {TrainList(filtered,favorites,value,"dízel")}
+                <h2>Villamos mozdonyok</h2>
+                {TrainList(filtered,favorites,value,"villamos")}
             </div>
         </div>
     )

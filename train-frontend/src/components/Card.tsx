@@ -10,7 +10,7 @@ interface card{
 }
 
 export const Card: React.FC<card>=({train, favorites})=>{
-    const getPics=(series_number: number)=>{
+    const getPics=(series_number: string)=>{
         try{
             const src=require("../images/trains/"+series_number+".png")
             if (src) return <img src={src} className="train-img"/>

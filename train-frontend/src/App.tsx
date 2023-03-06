@@ -13,6 +13,9 @@ import { TrainById } from './pages/TrainById';
 import { Favorites } from './pages/Favorites';
 import { Game } from './pages/Game';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { OtherUserProfile } from './pages/OtherUserProfile';
+import { AnswerPage } from './pages/AnswerPage';
+import { LookAtAnsweredPage } from './pages/LookAtAnswerPage';
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
         <Route path='/traininfo' element={<TrainById/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
         <Route path='/surprise' element={<Game/>}/>
+        <Route path='/profiles' element={<OtherUserProfile/>}/>
+        <Route path='/answer-comment' element={<AnswerPage/>}/>
+        <Route path='/look-answered' element={<LookAtAnsweredPage/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -8,9 +8,16 @@ table.gotComments tr.data td{
     background-color: antiquewhite;
 }
 
-table.gotComments tr.data td span.date{
+table.gotComments tr.data td span.right{
     float: right;
     color: rgb(111, 139, 148);
+}
+
+table.gotComments tr.data td span.right span.id{
+    color: rgb(70, 68, 68);
+    font-size: smaller;
+    font-weight: bold;
+    padding-left: 1em;
 }
 
 table.gotComments tr.comment td{
@@ -18,4 +25,22 @@ table.gotComments tr.comment td{
     padding: 0.2em;
     background-color: rgb(248, 244, 238);
     border-bottom: thin solid rgb(252, 196, 123);
+}
+
+table.gotComments tr.data td span.username{
+    color:rgb(102, 66, 66);
+    font-weight: bold;
+}
+
+table.gotComments tr.answer{
+    background-color: rgb(253, 253, 252);
+}
+
+table.gotComments tr.answer td span{
+    color:rgb(102, 66, 66);
+    font-style: italic;
+}
+
+table.gotComments tr.answer td span.answered{
+    float: right;
 }

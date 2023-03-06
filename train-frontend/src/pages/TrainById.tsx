@@ -24,7 +24,11 @@ export const TrainById=()=>{
         const {data}=await axios.get("http://localhost:5000/get_favorites_by_user_id/"+sessionStorage["id"])
         setFavorites(data)
     }
-    useEffect(()=>{getFavorites()},[])    
+    useEffect(()=>{getFavorites()},[])   
+    const getInfo=(text: string | undefined)=>{
+        if(text===undefined) return ""
+        return text
+    }
 
     return(
         <div className="container-fluid overflow-auto">
@@ -37,10 +41,10 @@ export const TrainById=()=>{
                         <LikeButton train_id={DATA?.id} favorite={favorites}/>
                     </div>
                 </div>
-                <div className="info">{DATA?.info}</div>
+                <div className="info" dangerouslySetInnerHTML={{__html: getInfo(DATA?.info)}}></div>
                 <div className="comments">
                     <h3>Hozzászólás</h3>
-                    {CommentForm(DATA?.id)}
+                    {CommentForm(DATA?.id, null)}
                 </div>
                 <div className="gotFromServerComments">
                     <Comments/>

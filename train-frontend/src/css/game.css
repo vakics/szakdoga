@@ -2,6 +2,7 @@ canvas.playArea{
     margin-top: 1em;
     border: thin solid black;
     margin-left: 1em;
+    background-color: rgb(255, 255, 139);
 }
 
 #station,#locomotive,#carrige{
@@ -11,7 +12,8 @@ canvas.playArea{
 .playButton {
 	position: fixed;
 	top: 50%;
-    right: 10%;
+    right: 8%;
+    font-size: xx-large;
 }
 
 .scoreBox {

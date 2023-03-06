@@ -62,6 +62,16 @@ def login():
         "email":user.email
     })
 
+@app.route("/get_user/<string:username>")
+def get_user(username):
+    user=models.User.query.filter_by(username=username).first()
+    if user is None:
+        return jsonify({"error":"Not found"}),404
+    return jsonify({
+        "username":user.username,
+        "email":user.email
+    })
+
 @app.route('/logout',methods=["POST"])
 def logout():
     session.pop("user_id",None)
@@ -146,7 +156,8 @@ def add_comment():
     train_id=request.json["train_id"]
     comment=request.json["comment"]
     created=request.json["created"]
-    new_comment=models.Comments(username=username,train_id=train_id,comment=comment,created=created)
+    answer_to=request.json["answer_to"]
+    new_comment=models.Comments(username=username,train_id=train_id,comment=comment,created=created,answer_to=answer_to)
     models.db.session.add(new_comment)
     models.db.session.commit()
     return json.dumps(new_comment.as_dict())
@@ -157,6 +168,13 @@ def get_comments_by_train_id(train_id):
     if comments is None:
         return jsonify({"error":"Not found"}),404
     return json.dumps([comment.as_dict() for comment in comments])
+
+@app.route("/get_comment/<int:id>")
+def get_comment(id):
+    comment=models.Comments.query.get(id)
+    if comment is None:
+        return jsonify({"error":"Not found"}),404
+    return json.dumps(comment.as_dict())
 
 @app.route("/delete_comment_by_id/<int:id>",methods=['GET','DELETE'])
 def delete_comment_by_id(id):

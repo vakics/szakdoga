@@ -1,0 +1,26 @@
+table.comment{
+    border: thin solid rgb(252, 196, 123);
+}
+
+table.comment tr.data td{
+    min-width: 80vw;
+    padding: 0.2em;
+    background-color: antiquewhite;
+}
+
+table.comment tr.data td span.date{
+    float: right;
+    color: rgb(111, 139, 148);
+}
+
+table.comment tr.comment td{
+    width: 80vw;
+    padding: 0.2em;
+    background-color: rgb(248, 244, 238);
+    border-bottom: thin solid rgb(252, 196, 123);
+}
+
+table.comment tr.data td span.username{
+    color:rgb(102, 66, 66);
+    font-weight: bold;
+}

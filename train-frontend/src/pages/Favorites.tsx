@@ -42,6 +42,7 @@ export const Favorites=()=>{
             <Header/>
             <AuthMessage/>
             <div className="main">
+                <h1>{filtered.length===0?"Jelenleg nincsenek kedvelt vonataid!":""}</h1>
                 <div className={isArrayEmpty(filtered,"villamos")?"hidden":""}>
                     <h2>Villamos mozdonyok</h2>
                     {TrainList(filtered,favorites,"","villamos")}

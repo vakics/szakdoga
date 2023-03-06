@@ -167,7 +167,7 @@ export const Game=()=>{
 				</Modal>}
                 <canvas className="playArea" ref={canvasRef} width={`${canvasX}px`} height={`${canvasY}px`} />
 				<button onClick={play} className="playButton">
-					Játék
+					Indítás
 				</button>
             </div>
 			<div className="scoreBox">
