@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
 import { Header } from "../components/Header"
 import { TrainList } from "../components/TrainList"
 import "../css/traintemplate.css"
 import axios from "axios"
-import { AuthMessage } from "../components/AuthMessage"
 import { TrainInterface } from "../components/TrainInterface"
 
 export const TrainTemplate=(data:TrainInterface[],train_type:string)=>{
@@ -20,7 +18,6 @@ export const TrainTemplate=(data:TrainInterface[],train_type:string)=>{
     return(
         <div className="container-fluid">
             <Header/>
-            <AuthMessage/>
             <div className="main">
                 <div className="search">
                     <input type="text" placeholder="Keresés" id="searchbar" value={value} onChange={(e)=>setValue(e.target.value)} />

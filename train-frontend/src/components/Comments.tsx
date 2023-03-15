@@ -9,7 +9,9 @@ export const Comments=()=>{
     const [DATA,setDATA]=useState<{id:number,username:string,train_id:number,comment:string,created:string,answer_to:number}[]>([])
     const getDATA=async()=>{
         const {data}=await axios.get("http://localhost:5000/get_comments_by_train_id/"+location.hash.slice(1))
-        setDATA(data)
+        let newdata=[...data]
+        newdata.reverse()
+        setDATA(newdata)
     }
     useEffect(()=>{
         getDATA()

@@ -10,3 +10,7 @@ table.data{
 table.data td{
     padding-right: 1em;
 }
+
+button.btn-danger{
+    margin-left: 5em;
+}

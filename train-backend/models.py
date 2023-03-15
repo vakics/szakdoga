@@ -12,6 +12,7 @@ class User(db.Model):
     email=db.Column(db.String(345))
     username=db.Column(db.String(30), unique=True)
     password=db.Column(db.Text,nullable=False)
+    is_contact_public=db.Column(db.Boolean())
 
 class Train(db.Model):
     __tablename__="trains"
@@ -42,7 +43,7 @@ class Comments(db.Model):
     id=db.Column(db.Integer(),primary_key=True,unique=True)
     username=db.Column(db.String(30))
     train_id=db.Column(db.Integer())
-    comment=db.Column(db.String(300))
+    comment=db.Column(db.String(350))
     created=db.Column(db.String())
     answer_to=db.Column(db.Integer())
 

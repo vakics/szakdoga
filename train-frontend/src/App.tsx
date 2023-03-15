@@ -16,14 +16,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { OtherUserProfile } from './pages/OtherUserProfile';
 import { AnswerPage } from './pages/AnswerPage';
 import { LookAtAnsweredPage } from './pages/LookAtAnswerPage';
+import { AllTrains } from './pages/AllTrains';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Registration/>}/>
-        <Route path='/home' element={<MainSite/>}/>
+        <Route path='/' element={<MainSite/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/diesel' element={<DieselTrains/>}/>
         <Route path='/electric' element={<ElectricTrains/>}/>
@@ -35,6 +36,7 @@ function App() {
         <Route path='/profiles' element={<OtherUserProfile/>}/>
         <Route path='/answer-comment' element={<AnswerPage/>}/>
         <Route path='/look-answered' element={<LookAtAnsweredPage/>}/>
+        <Route path='/all-trains' element={<AllTrains/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,30 +1,41 @@
 import axios from "axios"
 import { useState } from "react"
 import {marked} from "marked"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { AuthMessage } from "./AuthMessage"
 
 export const CommentForm=(train_id:number|undefined,answer_to:null|number)=>{
+    const [areYouNotLoggedInComment,setAreYouNotLoggedInComment]=useState(false)
     const navigate=useNavigate()
     const [value,setValue]=useState("")
     const [markdown,setMarkdown]=useState("")
     const now=new Date()
-    const onSubmit=()=>{
-        if (value.trim().length===0) {alert("Nincs elküldhető hozzászólás!")}
-        else if(value.trim.length>300){alert("Túl hosszú hozzászólás (max 300 karakter)!")}
-        else {
-            axios.post("http://localhost:5000/add_comment",{
-                "username":sessionStorage["username"],
-                "train_id":train_id,
-                "comment":markdown,
-                "created":now,
-                "answer_to":answer_to
-            }).then(()=>{
-                window.location.reload()
-                
-            }).catch((err)=>{console.log(err)})
-        }
-        navigate("/traininfo#"+train_id)
+
+    const onSubmit=(event:any)=>{
+        event.preventDefault()
+        setAreYouNotLoggedInComment(sessionStorage["id"]===undefined)
+        if (areYouNotLoggedInComment===false && value.trim().length===0){
+            alert("Nincs elküldhető hozzászólás!")}
+        else if(value.trim.length>300 && areYouNotLoggedInComment===false){alert("Túl hosszú hozzászólás (max 300 karakter)!")}
+        else if(areYouNotLoggedInComment===false && value.trim().length>0 && value.trim().length<300) {
+                axios.post("http://localhost:5000/add_comment",{
+                    "username":sessionStorage["username"],
+                    "train_id":train_id,
+                    "comment":markdown,
+                    "created":now,
+                    "answer_to":answer_to
+                }).then(()=>{
+                    if(window.location.pathname==="/traininfo"){
+                        window.location.reload()
+                    }
+                    if(window.location.pathname==="/answer-comment"){
+                        navigate(-1)
+                    }
+                })
+                .catch((err)=>{console.log(err)})
+            }
     }
+
     const changeToMarkdown=(text: string)=>{
         setValue(text)
         let text2=""
@@ -36,12 +47,13 @@ export const CommentForm=(train_id:number|undefined,answer_to:null|number)=>{
 
     return(
         <>
-            <form>
+            <AuthMessage isShowEnabled={areYouNotLoggedInComment} />
+            <form onSubmit={onSubmit}>
                 <div className="form-group p-0">
                     <textarea className="form-control" value={value} onChange={(e)=>{changeToMarkdown(e.target.value)}} rows={5}></textarea>
                 </div>
                 <br />
-                <input type="submit" onClick={onSubmit} />
+                <button type="submit" className="btn btn-light border border-dark">Küldés</button>
             </form>
         </>
     )

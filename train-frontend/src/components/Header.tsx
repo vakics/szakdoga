@@ -17,13 +17,33 @@ export const Header=()=>{
 
     const onLogout=()=>{
         sessionStorage.clear()
-        navigate("/")
     }
 
     return(
         <div className="header bg-dark">
             <span className="menu">
                 <SlidingMenu/>
+            </span>
+            <span className="user">
+                    <button onClick={handleClick} className={sessionStorage["id"]===undefined?"hidden":"user"}>
+                        <img src={require('../images/user.png')} alt="User" />
+                    </button>
+                    <button onClick={()=>navigate("/login")} className={sessionStorage["id"]===undefined?"btn btn-info":"hidden"}>Jelentkezz be!</button>
+                    <Menu
+                    keepMounted
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    open={Boolean(anchorEl)}>
+                        <Link to="/profile"  style={{color:"black",textDecoration:"none"}}>
+                            <MenuItem onClick={handleClose}>Profil</MenuItem>
+                        </Link>
+                        <Link to="/favorites" style={{color:"black",textDecoration:"none"}}>
+                            <MenuItem onClick={handleClose}>Kedvencek</MenuItem>
+                        </Link>
+                        <MenuItem onClick={handleClose}>
+                            <div onClick={onLogout}>Kijelentkezés</div>
+                        </MenuItem>
+                    </Menu>
             </span>
         </div>
     )

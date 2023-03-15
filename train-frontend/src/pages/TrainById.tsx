@@ -33,7 +33,6 @@ export const TrainById=()=>{
     return(
         <div className="container-fluid overflow-auto">
             <Header/>
-            <AuthMessage/>
             <div className="main">
                 <div className="headline">
                     <div className="train-img"><img className="trainbyid" src={DATA?.image_url} /></div>

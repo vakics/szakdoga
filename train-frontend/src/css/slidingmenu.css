@@ -43,31 +43,6 @@ div.menu-switch > img{
     margin: 1em;
 }
 
-div.user{
-    display: block;
-}
-
-div.user > button{
-    background-color: transparent;
-    border: none;
-    outline: none;
-    position: absolute;
-    bottom: 0;
-    margin-left: 1em;
-    border-top: thin solid #7c838a;
-    border-left: thin solid #7c838a;
-    border-bottom: thin solid #373a3d;
-    border-right: thin solid #373a3d;
-}
-
-div.user > button:hover{
-    background-color: #404346;
-}
-
-div.user > button > img{
-    height: 2.5em;
-}
-
 @media screen and (max-width:500px){
     .slidein{
         width: 100%;

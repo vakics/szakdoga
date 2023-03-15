@@ -6,7 +6,7 @@
 }
 
 div.main-main{
-    margin-top: 1em;
+    margin: 1em;
 }
 
 button{
@@ -20,18 +20,50 @@ button.like > img{
 }
 
 div.slide{
-    width: 70%;
+    width: 80%;
     margin: auto;
+}
+
+div.slide img{
+    height: 60%;
+}
+
+div.statistics,div.contacts{
+    width: fit-content;
+    text-align: center;
+    border-radius: 1em;
+    border: thin solid green;
+}
+
+a.carousel-control-prev:hover,a.carousel-control-next:hover{
+    background-color: rgba(77, 75, 75, 0.61);
+}
+
+div.carousel-caption{
+    width: 100%;
+    left: 0%;
+    bottom: 0;
+    background-color: rgba(100, 97, 97, 0.473);
 }
 
 @media screen and (max-width:1000px) {
     div.slide{
         width: 80%;
     }
+    div.contacts,div.statistics{
+        display: none !important;
+    }
 }
 
 @media screen and (max-width:700px) {
     div.slide{
         width: 100%;
+    }
+    div.main-main{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    div.contacts,div.statistics{
+        display: none !important;
     }
 }

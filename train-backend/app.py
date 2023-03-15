@@ -26,7 +26,8 @@ def get_current_user():
     return jsonify({
         "id":user.id,
         "username":user.username,
-        "email":user.email
+        "email":user.email,
+        "is_contact_public":user.is_contact_public
     })
 
 @app.route("/register", methods=["POST"])
@@ -38,7 +39,7 @@ def register_user():
     if user_exists:
         return jsonify({"error":"User already exists"}),409
     hashed_password=bcrypt.generate_password_hash(password)
-    new_user=models.User(email=email,password=hashed_password,username=username)
+    new_user=models.User(email=email,password=hashed_password,username=username,is_contact_public=True)
     models.db.session.add(new_user)
     models.db.session.commit()
     return jsonify({
@@ -69,8 +70,28 @@ def get_user(username):
         return jsonify({"error":"Not found"}),404
     return jsonify({
         "username":user.username,
-        "email":user.email
+        "email":user.email,
+        "is_contact_public":user.is_contact_public
     })
+
+@app.route("/update_contact_visibility",methods=["PUT"])
+def update_contact_visibility():
+    user_id=request.json["user_id"]
+    visible=request.json["is_contact_public"]
+    user=models.User.query.get(user_id)
+    if user is None:
+        return jsonify({"error":"Not found"}),404
+    user.is_contact_public=visible
+    models.db.session.commit()
+    return jsonify({
+        "username":user.username,
+        "email":user.email,
+        "is_contact_public":user.is_contact_public
+    })
+
+@app.route("/get_number_of_users")
+def get_number_of_users():
+    return jsonify({"number":len(models.User.query.all())})
 
 @app.route('/logout',methods=["POST"])
 def logout():

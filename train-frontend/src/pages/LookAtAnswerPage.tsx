@@ -1,5 +1,4 @@
 import { useLocation } from "react-router"
-import { AuthMessage } from "../components/AuthMessage"
 import { Header } from "../components/Header"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -39,7 +38,6 @@ export const LookAtAnsweredPage=()=>{
     return(
         <div className="container-fluid">
             <Header/>
-            <AuthMessage/>
             <div className="main">
                 <table className="gotComments">
                 <tbody>

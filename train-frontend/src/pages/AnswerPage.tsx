@@ -28,7 +28,7 @@ export const AnswerPage=()=>{
     return(
         <div className="container-fluid">
             <Header/>
-            <AuthMessage/>
+            <AuthMessage isShowEnabled={sessionStorage["id"]===undefined}/>
             <div className="main">
                 <table className="gotComments">
                     <tbody>

@@ -14,7 +14,7 @@ export const RegistrationForm=()=>{
     const {register,formState:{errors},handleSubmit,watch}=useForm<Registrationform>()
     const onSubmit: SubmitHandler<Registrationform>=(data:{email: string, username: string, password: string, passwordConf: string})=>{
         axios.post("http://localhost:5000/register",{email:data.email,username:data.username,password:data.password}).then((response:any)=>{
-            navigation("/")
+            navigation("/login")
         }).catch((error:any)=>{
             alert("Ez a felhasználónév már létezik!")
         })

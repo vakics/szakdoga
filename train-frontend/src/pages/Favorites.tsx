@@ -40,7 +40,7 @@ export const Favorites=()=>{
     return(
         <div className="container-fluid">
             <Header/>
-            <AuthMessage/>
+            <AuthMessage isShowEnabled={sessionStorage["id"]===undefined}/>
             <div className="main">
                 <h1>{filtered.length===0?"Jelenleg nincsenek kedvelt vonataid!":""}</h1>
                 <div className={isArrayEmpty(filtered,"villamos")?"hidden":""}>

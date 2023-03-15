@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { AuthMessage } from "./AuthMessage"
 
 interface data{
     train_id: number | undefined
@@ -7,6 +8,7 @@ interface data{
 }
 
 const LikeButton: React.FC<data>=({train_id, favorite})=>{
+    const [areYouNotLoggedIn,setAreYouNotLoggedIn]=useState(false)
     const isTrainLiked=(train_id: number | undefined)=>{
         let liked=false
         favorite.filter((fav)=>{
@@ -19,19 +21,25 @@ const LikeButton: React.FC<data>=({train_id, favorite})=>{
         setLiked(isTrainLiked(train_id))
     })
     const handleLike=async()=>{
-        setLiked(!liked)
-        if (!liked){
-            axios.post("http://localhost:5000/add_favorite",{"user_id":sessionStorage["id"],"train_id":train_id}).then(()=>{window.location.reload()})
-        }
-        if(liked){
-            const id=favorite.filter((fav)=>fav.train_id===train_id).at(0)?.id
-            axios.delete("http://localhost:5000/delete_favorite/"+id).then(()=>{window.location.reload()})
+        setAreYouNotLoggedIn(sessionStorage["id"]===undefined)
+        if (areYouNotLoggedIn===false){
+            setLiked(!liked)
+            if (!liked){
+                axios.post("http://localhost:5000/add_favorite",{"user_id":sessionStorage["id"],"train_id":train_id}).then(()=>{window.location.reload()})
+            }
+            if(liked){
+                const id=favorite.filter((fav)=>fav.train_id===train_id).at(0)?.id
+                axios.delete("http://localhost:5000/delete_favorite/"+id).then(()=>{window.location.reload()})
+            }
         }
     }
     return(
-        <button className="like" onClick={()=>handleLike()}>
-            <img src={liked?require('../images/heart.png'):require('../images/heart_blank.png')} />
-        </button>
+        <>
+            <AuthMessage isShowEnabled={areYouNotLoggedIn}/>
+            <button className="like" onClick={()=>handleLike()}>
+                <img src={liked?require('../images/heart.png'):require('../images/heart_blank.png')} />
+            </button>
+        </>
     )
 }
 
