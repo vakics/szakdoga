@@ -4,8 +4,16 @@ import json
 
 def upload(app):
     with app.app_context():
+        try:
+            f=open("train.json")
+        except FileNotFoundError:
+            f=open("train.json","w")
+        f.close()
         with open("train.json", encoding="utf-8") as json_file:
-            data=json.load(json_file)
+            try:
+                data=json.load(json_file)
+            except json.decoder.JSONDecodeError:
+                data=[]
         if len(Train.query.all()) < len(data):
             for train in Train.query.all():
                 db.session.delete(train)

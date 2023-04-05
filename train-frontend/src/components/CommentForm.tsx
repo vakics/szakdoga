@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {marked} from "marked"
 import { useNavigate } from "react-router-dom"
 import { AuthMessage } from "./AuthMessage"
@@ -10,6 +10,17 @@ export const CommentForm=(train_id:number|undefined,answer_to:null|number)=>{
     const [value,setValue]=useState("")
     const [markdown,setMarkdown]=useState("")
     const now=new Date()
+
+    useEffect(()=>{
+        checkLenght(value)
+    },[])
+
+    const checkLenght=(value:string)=>{
+        if (value.length===301) {
+            alert("Túl hosszú hozzászólás (max 300 karakter)!")
+        }
+        console.log(value.length)
+    }
 
     const onSubmit=(event:any)=>{
         event.preventDefault()
@@ -50,7 +61,7 @@ export const CommentForm=(train_id:number|undefined,answer_to:null|number)=>{
             <AuthMessage isShowEnabled={areYouNotLoggedInComment} />
             <form onSubmit={onSubmit}>
                 <div className="form-group p-0">
-                    <textarea className="form-control" value={value} onChange={(e)=>{changeToMarkdown(e.target.value)}} rows={5}></textarea>
+                    <textarea className="form-control" value={value} onChange={(e)=>{checkLenght(e.target.value);changeToMarkdown(e.target.value)}} rows={5}></textarea>
                 </div>
                 <br />
                 <button type="submit" className="btn btn-light border border-dark">Küldés</button>

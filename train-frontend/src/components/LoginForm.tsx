@@ -18,7 +18,7 @@ export const LoginForm=()=>{
             sessionStorage.setItem("username",response.data.username)
             sessionStorage.setItem("email",response.data.email)
             navigation('/')
-        }).catch((error:any)=>{
+        }).catch(()=>{
             alert("Hibás felhasználónév vagy jelszó!")
         })
     }

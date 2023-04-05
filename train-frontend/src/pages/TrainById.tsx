@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useLocation, useNavigate } from "react-router"
+import { useLocation } from "react-router"
 import { Header } from "../components/Header"
 import { TrainInterface } from "../components/TrainInterface"
 import axios from "axios"
@@ -7,7 +7,6 @@ import "../css/trainbyid.css"
 import LikeButton from "../components/LikeButton"
 import { CommentForm } from "../components/CommentForm"
 import { Comments } from "../components/Comments"
-import { AuthMessage } from "../components/AuthMessage"
 
 export const TrainById=()=>{
     const location=useLocation()

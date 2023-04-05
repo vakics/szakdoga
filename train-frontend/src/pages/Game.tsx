@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Header } from "../components/Header"
 import '../css/game.css'
-import useInterval from "../components/game/UseInterval"
 import { Button, Modal } from "react-bootstrap"
+import { useInterval } from "usehooks-ts"
 
 const canvasX = 1000
 const canvasY = 500
@@ -33,39 +33,26 @@ export const Game=()=>{
 				if (ctx) {
 					ctx.setTransform(scale, 0, 0, scale, 0, 0)
 					ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
-					let length=train.length
 					train.forEach(([ x, y ]) =>{
 						if(direction[0]===1 && direction[1]===0){
 							if((train[0][0]===x && train[0][1]===y)){
 								ctx.drawImage(loc,x, y, 1.5, 1)
-							}
-							if((train[length-1][0]===x && train[length-1][1]===y)){
-								ctx.drawImage(loc,x-2.5, y, 1.5, 1)
 							}
 						}
 						if(direction[0]===-1 && direction[1]===0){
 							if((train[0][0]===x && train[0][1]===y)){
 								ctx.drawImage(loc,x-2.5, y, 1.5, 1)
 							}
-							if((train[length-1][0]===x && train[length-1][1]===y)){
-								ctx.drawImage(loc,x, y, 1.5, 1)
-							}
 						}
 						if(direction[0]===0 && direction[1]===1){
 							if((train[0][0]===x && train[0][1]===y)){
 								ctx.drawImage(loc,x-1, y+1, 1.5, 1)
 							}
-							if((train[length-1][0]===x && train[length-1][1]===y)){
-								ctx.drawImage(loc,x-1, y-1, 1.5, 1)
-							}
 						}
 						if(direction[0]===0 && direction[1]===-1){
 							if((train[0][0]===x && train[0][1]===y)){
 								ctx.drawImage(loc,x-1, y-1, 1.5, 1)
-							}
-							if((train[length-1][0]===x && train[length-1][1]===y)){
-								ctx.drawImage(loc,x-1, y+1, 1.5, 1)
-							}
+							}	
 						}
 						ctx.drawImage(car,x-1, y, 1, 1)
 						

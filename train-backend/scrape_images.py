@@ -19,7 +19,7 @@ def main():
         images=soup.find_all('img')
         urls=[img['src'] for img in images]
         for url in urls:
-            filename = re.search(r'/([\w_-]+[.](jpg|gif|png))$', url)
+            filename = re.search(r'/([\w_-]+[.](png))$', url)
             if not filename:
                 continue
             with open("trains/"+filename.group(1), 'wb') as f:
